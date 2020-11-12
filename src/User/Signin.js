@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate } from "../auth/helper";
-require("dotenv").config();
 
 const Signin = () => {
   const [values, setValues] = useState({
