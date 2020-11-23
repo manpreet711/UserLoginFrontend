@@ -23,8 +23,8 @@ const Signin = () => {
     setValues({ ...values, error: false, loading: true });
     signin({ email, password })
       .then((data) => {
-        if (data.error) {
-          setValues({ ...values, error: data.error, loading: false });
+        if (data.message) {
+          setValues({ ...values, error: data.message, loading: false });
         } else {
           authenticate(data, () => {
             setValues({ ...values, didRedirect: true });
@@ -56,7 +56,7 @@ const Signin = () => {
         <div className="col-md-6 offset-sm-3 text-left">
           <div
             className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
+            style={{ display: error ? " " : "none" }}
           >
             {error}
           </div>
