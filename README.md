@@ -1,6 +1,6 @@
 #Frontend
 
-statting point of the application is index.js
+Statting point of the application is index.js
 
 To start the script run the command "npm start"
 
