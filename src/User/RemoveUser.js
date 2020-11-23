@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
 import { getAllUsers, removeUser } from "../auth/helper";
+import Pagination from "../Pagination";
+import PaginateUsers from "./PaginatedUsers";
 
 const RemoveUser = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentpage, setCurrentPage] = useState(1);
+  const [userperpage] = useState(4);
 
   const preload = () => {
     getAllUsers().then((data) => {
@@ -11,6 +16,7 @@ const RemoveUser = () => {
         console.log(data.error);
       } else {
         setUsers(data);
+        setLoading(false);
       }
     });
   };
@@ -29,6 +35,14 @@ const RemoveUser = () => {
     preload();
   }, []);
 
+  //Get Current Post
+  const indexOfLastUser = currentpage * userperpage;
+  const indexOfFirstUser = indexOfLastUser - userperpage;
+  const currentuser = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  //Change Page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <Base title="Welcome Admin" description="Manage users here">
       <div className="row">
@@ -39,32 +53,15 @@ const RemoveUser = () => {
           >
             All Users
           </h1>
-          {users.map((user, index) => {
-            return (
-              <div key={index} className="row text-center mb-2 ">
-                <div className="col-4">
-                  <h2 className="text-white text-left">
-                    {user.firstName} {user.lastName}
-                  </h2>
-                </div>
-                <div className="col-4">
-                  <h2 className="text-white text-left">{user.email}</h2>
-                </div>
-                <div className="col-4">
-                  <button
-                    onClick={() => {
-                      deleteUser(user.id);
-                    }}
-                    className="btn btn-lg btn-outline-danger"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            );
-          })}
         </div>
       </div>
+      <PaginateUsers users={currentuser} loading={loading} deleteUser = {deleteUser} />
+      <Pagination
+        userPerPage={userperpage}
+        totalUser={users.length}
+        paginate={paginate}
+        
+      />
     </Base>
   );
 };
