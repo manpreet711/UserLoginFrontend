@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { isAutheticated, updateUser, getOneUser } from "../auth/helper";
-import Base from "../core/Base";
+import Base from "../core/base";
 
 const UpdateUser = () => {
   const [values, setValues] = useState({

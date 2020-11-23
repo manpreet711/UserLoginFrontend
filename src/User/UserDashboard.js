@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Base from "../core/Base";
+import Base from "../core/base";
 import { isAutheticated, getOneUser } from "../auth/helper";
 import { Link } from "react-router-dom";
 

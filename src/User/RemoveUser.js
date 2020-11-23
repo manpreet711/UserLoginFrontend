@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Base from "../core/Base";
+import Base from "../core/base";
 import { getAllUsers, removeUser } from "../auth/helper";
-import Pagination from "../Pagination";
-import PaginateUsers from "./PaginatedUsers";
+import Pagination from "../pagination";
+import PaginateUsers from "./paginatedusers";
 
 const RemoveUser = () => {
   const [users, setUsers] = useState([]);
@@ -55,12 +55,15 @@ const RemoveUser = () => {
           </h1>
         </div>
       </div>
-      <PaginateUsers users={currentuser} loading={loading} deleteUser = {deleteUser} />
+      <PaginateUsers
+        users={currentuser}
+        loading={loading}
+        deleteUser={deleteUser}
+      />
       <Pagination
         userPerPage={userperpage}
         totalUser={users.length}
         paginate={paginate}
-        
       />
     </Base>
   );
