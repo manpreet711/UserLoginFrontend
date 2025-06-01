@@ -16,10 +16,6 @@ To Start Server:
 
 npm start
 
-To Visit App:
-
-http:/localhost:4000/
-
 Credentials for admin to signin 
 
 email:-admin@gmail.com
